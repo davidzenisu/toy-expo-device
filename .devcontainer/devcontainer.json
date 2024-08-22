@@ -21,5 +21,8 @@
 		"-p=8081:8081",
 		"--env-file",
 		".devcontainer/.env"
+	],
+	"mounts": [
+		"type=bind,source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
 	]
 }
