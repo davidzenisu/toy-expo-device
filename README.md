@@ -80,3 +80,4 @@ https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials#
   "type=bind,source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
 ]
 
+https://github.com/expo/eas-cli/issues/1300#issuecomment-1834275766
