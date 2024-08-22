@@ -4,6 +4,7 @@ uname -a
 echo -e "\nInstalling expo boiler plate..."
 # npm i -g create-expo-app@latest
 npm install
+npm i -g @expo/ngrok
 
 echo -e "\n*******************************"
 echo -e "\nDev container ready!".
