@@ -48,3 +48,35 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+
+## Dev Notes
+
+https://docs.docker.com/engine/install/ubuntu/
+
+iptables!
+
+https://github.com/docker/for-linux/issues/1105
+
+sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
+
+https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+(log in/out)
+
+https://docs.docker.com/engine/install/linux-postinstall/#configure-docker-to-start-on-boot-with-systemd
+
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
+
+https://github.com/csci430-os/vscode-remote-devcontainer/issues/2
+https://code.visualstudio.com/docs/devcontainers/containers#_working-with-git
+https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials#_using-ssh-keys
+
+
+"mounts": [
+  "type=bind,source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+]
+
