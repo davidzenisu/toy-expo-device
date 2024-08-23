@@ -16,10 +16,10 @@ jobs:
         npm install
     - name: Prebuild React Native
       run: |
-        npm install
+        npx expo prebuild
     - name: Build Android Release
       run: |
-        cd android && ./gradlew assembleRelease
+        npx react-native build-android --mode=release
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
       with:
