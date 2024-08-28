@@ -21,7 +21,6 @@ export const DIMENSION_HEIGHT = Dimensions.get("window").height;
 export default StyleSheet.create({
   // COMPONENT - CARD ITEM
   containerCardItem: {
-    backgroundColor: WHITE,
     borderRadius: 8,
     alignItems: "center",
     margin: 10,
@@ -42,8 +41,9 @@ export default StyleSheet.create({
     color: WHITE,
   },
   descriptionCardItem: {
-    color: GRAY,
     textAlign: "center",
+    fontSize: 15,
+    padding: 15,
   },
   status: {
     paddingBottom: 10,
@@ -52,7 +52,7 @@ export default StyleSheet.create({
   },
   statusText: {
     color: GRAY,
-    fontSize: 12,
+    fontSize: 5,
   },
   online: {
     width: 6,

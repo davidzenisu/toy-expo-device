@@ -8,12 +8,14 @@ import styles, {
     STAR_ACTIONS,
     WHITE,
 } from "../../assets/styles";
+import { ThemedView } from "../ThemedView";
+import { ThemedText } from "../ThemedText";
 
 export type CardItemT = {
     description?: string;
     hasActions?: boolean;
     hasVariant?: boolean;
-    image: any;
+    image?: any;
     isOnline?: boolean;
     matches?: string;
     name: string;
@@ -50,46 +52,45 @@ const CardItem = ({
         {
             paddingTop: hasVariant ? 10 : 15,
             paddingBottom: hasVariant ? 5 : 7,
-            color: "#363636",
-            fontSize: hasVariant ? 15 : 30,
+            fontSize: hasVariant ? 15 : 25,
         },
     ];
 
     return (
-        <View style={styles.containerCardItem}>
+        <ThemedView style={styles.containerCardItem}>
             {/* IMAGE */}
-            <Image source={image} style={imageStyle} />
+            {image && <Image source={image} style={imageStyle} />}
 
             {/* MATCHES */}
             {matches && (
-                <View style={styles.matchesCardItem}>
-                    <Text style={styles.matchesTextCardItem}>
+                <ThemedView style={styles.matchesCardItem}>
+                    <ThemedText style={styles.matchesTextCardItem}>
                         <Icon name="heart" color={WHITE} size={13} /> {matches}% Match!
-                    </Text>
-                </View>
+                    </ThemedText>
+                </ThemedView>
             )}
 
             {/* NAME */}
-            <Text style={nameStyle}>{name}</Text>
+            <ThemedText style={nameStyle}>{name}</ThemedText>
 
             {/* DESCRIPTION */}
             {description && (
-                <Text style={styles.descriptionCardItem}>{description}</Text>
+                <ThemedText style={styles.descriptionCardItem}>{description}</ThemedText>
             )}
 
             {/* STATUS */}
             {!description && (
-                <View style={styles.status}>
+                <ThemedView style={styles.status}>
                     <View style={isOnline ? styles.online : styles.offline} />
-                    <Text style={styles.statusText}>
+                    <ThemedText style={styles.statusText}>
                         {isOnline ? "Online" : "Offline"}
-                    </Text>
-                </View>
+                    </ThemedText>
+                </ThemedView>
             )}
 
             {/* ACTIONS */}
             {hasActions && (
-                <View style={styles.actionsCardItem}>
+                <ThemedView style={styles.actionsCardItem}>
                     <TouchableOpacity style={styles.miniButton} onPress={swipeTop}>
                         <Icon name="star" color={STAR_ACTIONS} size={14} />
                     </TouchableOpacity>
@@ -105,9 +106,9 @@ const CardItem = ({
                     <TouchableOpacity style={styles.miniButton} onPress={swipeTop}>
                         <Icon name="flash" color={FLASH_ACTIONS} size={14} />
                     </TouchableOpacity>
-                </View>
+                </ThemedView>
             )}
-        </View>
+        </ThemedView>
     );
 };
 

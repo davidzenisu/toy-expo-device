@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import { View } from "react-native";
 import CardItem from "@/components/swiper/CardItem";
-import styles from "../../assets/styles";
 import DEMO, { DataT } from "../../assets/data/demo";
 import Swiper from "react-native-deck-swiper";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { StyleSheet, useColorScheme } from 'react-native';
+import { ThemedView } from "@/components/ThemedView";
+import { ThemedText } from "@/components/ThemedText";
+import Animated from "react-native-reanimated";
 
 export default function Swipe() {
     const [swiper, setSwiper] = useState<Swiper<DataT> | null>(null);
@@ -25,11 +29,15 @@ export default function Swipe() {
         }
     }
 
-    return (
-        <View style={styles.containerHome}>
-            <View style={styles.top}>
-            </View>
+    const colorScheme = useColorScheme() ?? 'light';
+    const headerBackgroundColor = { light: '#D0D0D0', dark: '#353636' };
 
+    return (
+        <ThemedView>
+            <ParallaxScrollView
+                headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+                headerImage={<Ionicons size={310} name="heart-circle" style={styles.headerImage} />}>
+            </ParallaxScrollView>
             <Swiper
                 ref={(newSwiper): void => setSwiper(newSwiper)}
                 cards={DEMO}
@@ -51,9 +59,26 @@ export default function Swipe() {
                 onSwiped={(cardIndex) => { console.log(cardIndex); }}
                 onSwipedAll={() => { console.log('onSwipedAll') }}
                 cardIndex={0}
-                backgroundColor={'#4FD0E9'}
+                backgroundColor={headerBackgroundColor[colorScheme]}
                 stackSize={3}>
             </Swiper>
-        </View>
+        </ThemedView >
     );
 };
+
+const styles = StyleSheet.create({
+    headerImage: {
+        color: '#808080',
+        bottom: -90,
+        left: -35,
+        position: 'absolute',
+    },
+    header: {
+        height: 250,
+        overflow: 'hidden',
+    },
+    titleContainer: {
+        flexDirection: 'row',
+        gap: 8,
+    },
+});
