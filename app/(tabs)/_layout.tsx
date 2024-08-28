@@ -41,6 +41,24 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="swipe"
+        options={{
+          title: 'Dating',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'heart-circle' : 'heart-circle-outline'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="words"
+        options={{
+          title: 'Words',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'book' : 'book-outline'} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
