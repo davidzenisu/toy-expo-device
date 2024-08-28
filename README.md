@@ -50,6 +50,20 @@ Join our community of developers creating universal apps.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 
 
+## Inspirations
+
+Concept: Tinder as a puzzle game:
+
+Technology: React Native, Expo, NativeWind, 
+
+https://reactnative.dev/
+https://expo.dev/
+https://www.nativewind.dev/
+https://github.com/stevenpersia/tinder-expo
+
+Run on github CodeSpace (dev container):
+https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/setting-up-your-nodejs-project-for-codespaces
+
 ## Dev Notes
 
 https://docs.docker.com/engine/install/ubuntu/
