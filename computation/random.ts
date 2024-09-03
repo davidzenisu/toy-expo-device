@@ -7,3 +7,8 @@ export function randomList<T>(array: T[], count: number = 1): T[] {
     }
     return result;
 }
+
+export function randomEntry<T>(array: T[]): T | undefined {
+    const result = randomList(array);
+    return result.shift();
+}
