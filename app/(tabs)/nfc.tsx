@@ -9,15 +9,25 @@ import ThemedButton from '@/components/ThemedButton';
 
 import Constants from 'expo-constants'
 import { ExternalLink } from '@/components/ExternalLink';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Collapsible } from '@/components/Collapsible';
 import NdefMessage from '@/components/NdefMessage';
+import { textTag } from '@/assets/data/mockTag';
 
 export default function TabNfcScreen() {
     const isRunningInExpoGo = Constants.appOwnership === 'expo'
     const [tag, setTag] = useState<TagEvent | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (!isRunningInExpoGo) {
+            return;
+        }
+        const mockTag: TagEvent = textTag;
+        setTag(mockTag);
+    }, []);
+
 
     async function readNdef() {
         setTag(null);
@@ -67,13 +77,9 @@ export default function TabNfcScreen() {
             <ThemedText>{text}</ThemedText>
             <ThemedButton onPress={readNdef} label={'Fetch tag'} disabled={isRunningInExpoGo || loading}></ThemedButton>
             <ExpoGoDisclaimer isRunningInExpoGo={isRunningInExpoGo}></ExpoGoDisclaimer>
-            {/* <TagInfo tag={tag}></TagInfo> */}
+            <TagInfo tag={tag}></TagInfo>
         </ParallaxScrollView>
     );
-}
-
-function capitalizeFirstLetter(string: string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function TagInfo({ tag }: { tag: TagEvent | null }) {
