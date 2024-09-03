@@ -55,12 +55,12 @@ export function NdefMessage({ ndef }: { ndef: NdefRecord }) {
     const rtdName = rtdValueToName(ndef.type);
 
     return (
-        <View>
-            {tnfName && <Text>{`TNF: ${tnfName}`}</Text>}
-            {rtdName && <Text>{`RTD: ${rtdName}`}</Text>}
+        <ThemedView>
+            {tnfName && <ThemedText>{`TNF: ${tnfName}`}</ThemedText>}
+            {rtdName && <ThemedText>{`RTD: ${rtdName}`}</ThemedText>}
 
             <NdefPayload ndef={ndef} rtdName={rtdName}></NdefPayload>
-        </View>
+        </ThemedView>
     );
 }
 
@@ -91,7 +91,9 @@ function NdefPayload({ ndef, rtdName }: { ndef: NdefRecord, rtdName: string | nu
 
 function RtdTextPayload({ ndef }: { ndef: NdefRecord }) {
     let text = Ndef.text.decodePayload(ndef.payload as unknown as Uint8Array);
-    return <Text style={{ fontSize: 18 }}>{text}</Text>;
+    console.log(ndef.payload)
+    console.log(text)
+    return <ThemedText style={{ fontSize: 18 }}>{text}</ThemedText>;
 }
 
 function RtdUriPayload({ ndef }: { ndef: NdefRecord }) {
@@ -109,13 +111,13 @@ function WifiSimplePayload({ ndef }: { ndef: NdefRecord }) {
         <ThemedView style={{ marginTop: 10 }}>
             <ThemedText style={{ marginBottom: 5 }}>WIFI_SIMPLE</ThemedText>
             <ThemedView style={{ flexDirection: 'row', marginBottom: 5 }}>
-                <ThemedText style={{ color: 'grey', marginRight: 5 }}>SSID:</ThemedText>
+                <ThemedText style={{ marginRight: 5 }}>SSID:</ThemedText>
                 <ThemedText style={{ fontSize: 16, flex: 1 }}>
                     {credentials.ssid || '---'}
                 </ThemedText>
             </ThemedView>
             <ThemedView style={{ flexDirection: 'row', marginBottom: 5 }}>
-                <ThemedText style={{ color: 'grey', marginRight: 5 }}>Network Key:</ThemedText>
+                <ThemedText style={{ marginRight: 5 }}>Network Key:</ThemedText>
                 <ThemedText style={{ fontSize: 16, flex: 1 }}>
                     {credentials.networkKey || '---'}
                 </ThemedText>
@@ -128,7 +130,7 @@ function TextBasedMimePayload({ ndef, mimeType }: { ndef: NdefRecord, mimeType: 
     let text = Ndef.util.bytesToString(ndef.payload);
     return (
         <ThemedView>
-            <ThemedText style={{ fontSize: 16, color: 'gray' }}>{mimeType}</ThemedText>
+            <ThemedText style={{ fontSize: 16 }}>{mimeType}</ThemedText>
             <ThemedText style={{ fontSize: 16 }}>{text}</ThemedText>
         </ThemedView>
     );
