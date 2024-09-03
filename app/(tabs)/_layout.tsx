@@ -59,6 +59,15 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="nfc"
+        options={{
+          title: 'NFC',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'hardware-chip' : 'hardware-chip-outline'} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
