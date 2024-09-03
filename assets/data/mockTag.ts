@@ -1,26 +1,6 @@
 import { Ndef as ndef, TagEvent } from 'react-native-nfc-manager';
 
-const textMessageHelloWorld = [
-    209,
-    1,
-    15,
-    84,
-    2,
-    101,
-    110,
-    104,
-    101,
-    108,
-    108,
-    111,
-    44,
-    32,
-    119,
-    111,
-    114,
-    108,
-    100,
-];
+const textMessageHelloWorld = [2, 101, 110, 104, 101, 108, 108, 111, 44, 32, 119, 111, 114, 108, 100];
 
 const urlMessageNodeJSorg = [
     209,
@@ -120,7 +100,7 @@ export const textTag: TagEvent = {
     id: 'mock-id',
     ndefMessage: [
         {
-            id: [1],
+            id: [],
             tnf: 1,
             type: [84],
             payload: textMessageHelloWorld,
