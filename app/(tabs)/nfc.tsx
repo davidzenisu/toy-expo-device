@@ -9,22 +9,20 @@ import ThemedButton from '@/components/ThemedButton';
 
 import Constants from 'expo-constants'
 import { ExternalLink } from '@/components/ExternalLink';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Collapsible } from '@/components/Collapsible';
+import NdefMessage from '@/components/NdefMessage';
 
 export default function TabNfcScreen() {
     const isRunningInExpoGo = Constants.appOwnership === 'expo'
     const [tag, setTag] = useState<TagEvent | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
-    useEffect(() => {
-        readNdef();
-    }, []);
 
     async function readNdef() {
+        setTag(null);
+        setLoading(true);
         try {
-            setLoading(true);
-            setTag(null);
             // register for the NFC tag with NDEF in it
             await NfcManager.requestTechnology(NfcTech.Ndef);
             // the resolved tag object will contain `ndefMessage` property
@@ -33,20 +31,29 @@ export default function TabNfcScreen() {
         } catch (ex) {
             console.warn('Oops!', ex);
             setErrorMsg(ex as string);
+            setLoading(false);
         } finally {
             // stop the nfc scanning
-            NfcManager.cancelTechnologyRequest();
-            setLoading(false);
+            try {
+                await NfcManager.cancelTechnologyRequest();
+            } catch (ex) {
+                console.warn('Error while canceling technology request', ex);
+                setErrorMsg(ex as string);
+            } finally {
+                setLoading(false);
+            }
         }
     }
 
-    let text = 'Searching...';
-    if (errorMsg) {
+    let text = 'Start here:';
+    if (loading) {
+        text = 'Searching...';
+    }
+    else if (errorMsg) {
         text = errorMsg;
-    } else if (location) {
+    } else if (tag) {
         text = `Found tag!`;
     }
-
 
 
     return (
@@ -60,7 +67,7 @@ export default function TabNfcScreen() {
             <ThemedText>{text}</ThemedText>
             <ThemedButton onPress={readNdef} label={'Fetch tag'} disabled={isRunningInExpoGo || loading}></ThemedButton>
             <ExpoGoDisclaimer isRunningInExpoGo={isRunningInExpoGo}></ExpoGoDisclaimer>
-            <TagInfo tag={tag}></TagInfo>
+            {/* <TagInfo tag={tag}></TagInfo> */}
         </ParallaxScrollView>
     );
 }
@@ -74,21 +81,16 @@ function TagInfo({ tag }: { tag: TagEvent | null }) {
         return null;
     }
 
-    const tagObject = Array.from(Object.entries(tag), ([key, value]) => { return { label: capitalizeFirstLetter(key), value: value }; });
-
-    return <Collapsible title="NFC" expanded={true}>
-        <ScrollView horizontal={true}>
-            <FlatList
-                data={tagObject}
-                renderItem={({ item }) => (
-                    <ThemedText>
-                        <ThemedText type="defaultSemiBold">{item.label}:</ThemedText>
-                        <ThemedText> {item.value}</ThemedText>
-                    </ThemedText>
-                )}
-            />
-        </ScrollView>
-    </Collapsible>;
+    return (
+        <ThemedView>
+            {tag.ndefMessage.map(function (ndef, idx) {
+                return (
+                    <Collapsible key={idx} title="Message" expanded={true}>
+                        <NdefMessage ndef={ndef}></NdefMessage>
+                    </Collapsible>)
+            })}
+        </ThemedView>
+    );
 }
 
 function ExpoGoDisclaimer({ isRunningInExpoGo }: { isRunningInExpoGo: boolean }) {
