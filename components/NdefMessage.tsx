@@ -5,6 +5,20 @@ import { ExternalLink } from './ExternalLink';
 import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
 
+export function NdefMessage({ ndef }: { ndef: NdefRecord }) {
+    const tnfName = tnfValueToName(ndef.tnf);
+    const rtdName = rtdValueToName(ndef.type);
+
+    return (
+        <ThemedView>
+            {tnfName && <ThemedText>{`TNF: ${tnfName}`}</ThemedText>}
+            {rtdName && <ThemedText>{`RTD: ${rtdName}`}</ThemedText>}
+
+            <NdefPayload ndef={ndef} rtdName={rtdName}></NdefPayload>
+        </ThemedView>
+    );
+}
+
 const TNF_MAP: { [key: string]: number } = {
     EMPTY: 0x0,
     WELL_KNOWN: 0x01,
@@ -48,20 +62,6 @@ function rtdValueToName(value: number[] | string) {
         }
     }
     return null;
-}
-
-export function NdefMessage({ ndef }: { ndef: NdefRecord }) {
-    const tnfName = tnfValueToName(ndef.tnf);
-    const rtdName = rtdValueToName(ndef.type);
-
-    return (
-        <ThemedView>
-            {tnfName && <ThemedText>{`TNF: ${tnfName}`}</ThemedText>}
-            {rtdName && <ThemedText>{`RTD: ${rtdName}`}</ThemedText>}
-
-            <NdefPayload ndef={ndef} rtdName={rtdName}></NdefPayload>
-        </ThemedView>
-    );
 }
 
 function NdefPayload({ ndef, rtdName }: { ndef: NdefRecord, rtdName: string | null }) {
