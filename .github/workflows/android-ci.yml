@@ -24,6 +24,7 @@ jobs:
       run: |
         npm run android-build
     - name: Upload Artifact
+      if: ${{ github.event.inputs.upload_artifact == 'true' }}
       uses: actions/upload-artifact@v1
       with:
         name: app-release.apk
