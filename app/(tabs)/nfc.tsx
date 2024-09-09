@@ -39,8 +39,9 @@ export default function TabNfcScreen() {
             const tag = await NfcManager.getTag();
             setTag(tag);
         } catch (ex) {
-            console.warn('Oops!', ex);
-            setErrorMsg(ex as string);
+            await timeout(1000); //for 1 sec delay
+            console.warn('Oops! Seems we do not support NFC on this device:', ex);
+            setErrorMsg((ex as string).toString());
             setLoading(false);
         } finally {
             // stop the nfc scanning
@@ -48,7 +49,7 @@ export default function TabNfcScreen() {
                 await NfcManager.cancelTechnologyRequest();
             } catch (ex) {
                 console.warn('Error while canceling technology request', ex);
-                setErrorMsg(ex as string);
+                setErrorMsg((ex as string).toString());
             } finally {
                 setLoading(false);
             }
@@ -126,3 +127,7 @@ const styles = StyleSheet.create({
         gap: 8,
     },
 });
+
+function timeout(delay: number) {
+    return new Promise(res => setTimeout(res, delay));
+}
