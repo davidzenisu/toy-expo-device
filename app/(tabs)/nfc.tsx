@@ -88,9 +88,16 @@ function TagInfo({ tag }: { tag: TagEvent | null }) {
         return null;
     }
 
+    const ndefRecords = tag.ndefMessage || [];
+
     return (
         <ThemedView>
-            {tag.ndefMessage.map(function (ndef, idx) {
+            <ThemedText type="defaultSemiBold">Tag ID:</ThemedText>
+            <ThemedText>{tag.id}</ThemedText>
+            <ThemedText type="defaultSemiBold">Max size:</ThemedText>
+            <ThemedText>{tag.maxSize ? `${tag.maxSize} Bytes` : "not detected"} </ThemedText>
+            {ndefRecords.length == 0 && (<ThemedText>No NDEF records found. The tag might be encrypted!</ThemedText>)}
+            {ndefRecords.map(function (ndef, idx) {
                 return (
                     <Collapsible key={idx} title="Message" expanded={true}>
                         <NdefMessage ndef={ndef}></NdefMessage>
