@@ -1,0 +1,20 @@
+author: davidzenisu
+name: android-setup
+description: 'Set up a specific version of the Java JDK and add the command-line tools to the PATH'
+inputs:
+ version:
+    description: 'The Java version to set up. Takes a whole or semver Java version.'
+    default: '17'
+ distribution:
+    description: 'Java distribution.'
+    default: 'temurin'
+
+runs:
+  using: composite
+  steps:
+    - name: set up JDK ${{ inputs.version }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ inputs.version }}
+        distribution: ${{ inputs.distribution }}
+        cache: gradle
