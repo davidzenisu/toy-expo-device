@@ -24,5 +24,9 @@
 	],
 	"mounts": [
 		"type=bind,source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
-	]
+	],
+	"features": {
+		"ghcr.io/nordcominc/devcontainer-features/android-sdk:1": {}
+	}
+	// features: https://containers.dev/features
 }

@@ -34,7 +34,8 @@
     },
     "plugins": [
       "expo-router",
-      "expo-location"
+      "expo-location",
+      "react-native-nfc-manager"
     ],
     "experiments": {
       "typedRoutes": true
