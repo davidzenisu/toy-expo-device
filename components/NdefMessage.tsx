@@ -100,7 +100,7 @@ function RtdUriPayload({ ndef }: { ndef: NdefRecord }) {
     let uri = Ndef.uri.decodePayload(ndef.payload as unknown as Uint8Array);
     return (
         <ExternalLink href={uri}>
-            <ThemedText type="link">Learn more</ThemedText>
+            <ThemedText type="link">{uri}</ThemedText>
         </ExternalLink>
     );
 }
