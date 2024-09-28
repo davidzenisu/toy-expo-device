@@ -27,6 +27,13 @@
 	],
 	"features": {
 		"ghcr.io/nordcominc/devcontainer-features/android-sdk:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"files.autoSave": "afterDelay",
+				"editor.formatOnSave": true
+			}
+		}
 	}
-	// features: https://containers.dev/features
 }
