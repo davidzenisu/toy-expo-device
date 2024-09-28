@@ -14,3 +14,8 @@ updates:
    directory: "/"
    schedule:
      interval: weekly
+   allow:
+     # Allow updates for expo
+     # Ignore all others because that's required by expo:
+     # https://docs.expo.dev/more/expo-cli/#install
+     - dependency-name: "expo"
