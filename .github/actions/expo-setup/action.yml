@@ -1,0 +1,15 @@
+author: davidzenisu
+name: expo-setup
+description: 'Set up of Expo prebuilds for further processing'
+
+runs:
+  using: composite
+  steps:
+    - name: Install npm dependencies
+      shell: bash
+      run: |
+        npm install
+    - name: Prebuild React Native
+      shell: bash
+      run: |
+        npx expo prebuild

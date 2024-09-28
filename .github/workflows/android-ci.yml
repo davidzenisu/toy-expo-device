@@ -1,0 +1,30 @@
+name: Android CI
+
+on:
+  push:
+    branches: 
+      - "main"
+  workflow_dispatch:
+    inputs:
+      upload_artifact:
+        type: boolean
+        description: Should the built APK be uploaded as an artifact?
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: ./.github/actions/expo-setup
+    - uses: ./.github/actions/android-setup
+    - name: Build Android Build (CI)
+      run: |
+        npm run android-build
+    - name: Upload Artifact
+      if: ${{ github.event.inputs.upload_artifact == 'true' }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-release.apk
+        path: android/app/build/outputs/apk/release
