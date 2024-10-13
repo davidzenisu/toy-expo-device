@@ -68,6 +68,15 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="database"
+        options={{
+          title: 'Database',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'document' : 'document-outline'} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
