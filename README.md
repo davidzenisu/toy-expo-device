@@ -60,6 +60,11 @@ https://reactnative.dev/
 https://expo.dev/
 https://www.nativewind.dev/
 https://github.com/stevenpersia/tinder-expo
+https://docs.expo.dev/versions/latest/sdk/sqlite/
+https://rxdb.info/react-native-database.html
+https://rxdb.info/alternatives.html
+https://github.com/pubkey/client-side-databases/
+https://github.com/pubkey/rxdb/blob/master/examples/react-native/initializeDb.js
 
 Run on github CodeSpace (dev container):
 https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/setting-up-your-nodejs-project-for-codespaces
