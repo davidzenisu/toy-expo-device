@@ -95,6 +95,9 @@ https://code.visualstudio.com/docs/devcontainers/containers#_working-with-git
 https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials#_using-ssh-keys
 
 
+
+https://rnfirebase.io/firestore/usage
+
 "mounts": [
   "type=bind,source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
 ]
