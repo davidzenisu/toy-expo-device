@@ -42,6 +42,15 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="pedometer"
+        options={{
+          title: 'Pedometer',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'barbell' : 'barbell-outline'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="swipe"
         options={{
           title: 'Dating',
