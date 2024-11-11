@@ -23,7 +23,8 @@
       },
       "permissions": [
         "android.permission.ACCESS_COARSE_LOCATION",
-        "android.permission.ACCESS_FINE_LOCATION"
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.health.READ_STEPS"
       ],
       "package": "com.anonymous.gamerednit"
     },
@@ -35,7 +36,8 @@
     "plugins": [
       "expo-router",
       "expo-location",
-      "react-native-nfc-manager"
+      "react-native-nfc-manager",
+      "expo-health-connect"
     ],
     "experiments": {
       "typedRoutes": true
