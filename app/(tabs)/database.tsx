@@ -122,7 +122,6 @@ async function migrateDbIfNeeded(db: SQLiteDatabase) {
         console.log('Starting migration...')
         await db.execAsync(`
   PRAGMA journal_mode = 'wal';
-  DROP TABLE todos;
   CREATE TABLE todos (id INTEGER PRIMARY KEY NOT NULL, value TEXT NOT NULL, uuid VARCHAR(36));
   `);
         await db.runAsync('INSERT INTO todos (value, uuid) VALUES (?, ?)', 'hello', uuid.v4() as string);
