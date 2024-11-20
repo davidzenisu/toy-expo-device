@@ -22,7 +22,7 @@ interface UserData {
 export default function AuthScreen() {
     const [user, setUser] = useState<UserData | null>(null);
 
-    GoogleSignin.configure();
+    GoogleSignin.configure({ webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEBCLIENT_ID });
 
     const signOut = async () => {
         try {
@@ -43,6 +43,7 @@ export default function AuthScreen() {
                     userInfo: response.data
                 }
                 setUser(userData);
+                console.log(`Access token is: ${userData.userInfo.idToken ? "set" : "not set"}`);
             } else {
                 // sign in was cancelled by user
             }
