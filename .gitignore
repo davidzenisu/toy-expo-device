@@ -22,3 +22,6 @@ expo-env.d.ts
 # ignore prebuild artifacts (expo)
 android
 ios
+
+# ignore potenially sensitive envrionment variables
+.env

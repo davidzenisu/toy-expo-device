@@ -77,6 +77,15 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="auth"
+        options={{
+          title: 'Auth',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'key' : 'key-outline'} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
