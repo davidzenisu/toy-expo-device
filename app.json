@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "game-red-nit",
-    "slug": "game-red-nit",
+    "name": "toy-expo-device",
+    "slug": "toy-expo-device",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
